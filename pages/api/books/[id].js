@@ -12,7 +12,7 @@ export default async function handler(req, res) {
                 data: { title, author },
             });
             return res.status(200).json(updatedBook);
-        } catch (error) {
+        } catch {
             return res.status(500).json({ error: "Error updating book" });
         }
     }
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         try {
             await prisma.book.delete({ where: { id: parseInt(id) } });
             return res.status(204).end();
-        } catch (error) {
+        } catch {
             return res.status(500).json({ error: "Error deleting book" });
         }
     }

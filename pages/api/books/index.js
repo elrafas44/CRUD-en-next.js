@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         try {
             const books = await prisma.book.findMany();
             return res.status(200).json(books);
-        } catch (error) {
+        } catch {
             return res.status(500).json({ error: "Error fetching books" });
         }
     }
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
             const { title, author } = req.body;
             const newBook = await prisma.book.create({ data: { title, author } });
             return res.status(201).json(newBook);
-        } catch (error) {
+        } catch {
             return res.status(500).json({ error: "Error creating book" });
         }
     }
